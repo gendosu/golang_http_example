@@ -1,8 +1,9 @@
 package main
 
 import (
-  "io"
+//  "io"
   "net/http"
+  "html/template"
 )
 
 func main() {
@@ -11,6 +12,9 @@ func main() {
 }
 
 func indexHandler( w http.ResponseWriter, r *http.Request) {
-  w.WriteHeader(http.StatusOK)
-  io.WriteString(w, "HelloWorld!\n")
+
+  indexTemplate := template.Must(template.ParseFiles("views/foo.html"))
+
+  indexTemplate.Execute(w, nil)
 }
+
